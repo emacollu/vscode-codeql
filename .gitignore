@@ -1,3 +1,5 @@
 # CodeQL compilation caches
-.cache/
+**/.cache/
 codeql-custom-queries-java/javacominjdb
+**/results_analysis
+**/.env
