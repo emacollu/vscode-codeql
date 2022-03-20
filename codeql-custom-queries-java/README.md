@@ -9,5 +9,5 @@ e poi eseguire lo script `createdb.sh`
 
 ### analisi del DB
 
-Dopo aver generato il database è possibile eseguire una query di codeql l'anciando lo scritp `analizedb.sh <file_ql_da eseguire>`.
-Verrà generato un file di risultato nella cartella `results_analysis` 
+Dopo aver generato il database è possibile eseguire una query di codeql l'anciando lo scritp `runquery.sh <file_ql_da eseguire>`.
+Verranno generati due file di risultato nella cartella `results_analysis`: il risultato dell'analisi in formato `.bqrs` e il file `.json` decodificato.
