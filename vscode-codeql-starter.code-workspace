@@ -5,6 +5,10 @@
 		},
 		{
 			"path": "ql"
+		},
+		{
+			"name": "[javacominjdb source archive]",
+			"uri": "codeql-zip-archive://0-93/Users/emanuelecollura/progetti/vscode-codeql/codeql-custom-queries-java/javacominjdb/src.zip"
 		}
 	],
 	"settings": {

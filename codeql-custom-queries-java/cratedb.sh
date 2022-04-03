@@ -3,9 +3,13 @@
 
 SOURCE_JAVA_PRJ_line=$(cat .env | grep SOURCE_JAVA_PRJ)
 
-if [[ $SOURCE_JAVA_PRJ_line != \#* ]]; then
-    SOURCE_JAVA_PRJ="${SOURCE_JAVA_PRJ_line#SOURCE_JAVA_PRJ=}"
-fi
+for OUTPUT in $SOURCE_JAVA_PRJ_line
+do
+    if [[ $OUTPUT != \#* ]]; then
+        SOURCE_JAVA_PRJ="${OUTPUT#SOURCE_JAVA_PRJ=}"
+        break
+    fi
+done
 
 if [ -z "$SOURCE_JAVA_PRJ" ]; then
       echo "\$SOURCE_JAVA_PRJ is empty"
