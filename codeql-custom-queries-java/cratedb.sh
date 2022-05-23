@@ -16,4 +16,21 @@ if [ -z "$SOURCE_JAVA_PRJ" ]; then
       exit -1
 fi
 
-codeql database create javacominjdb --language=java --command="mvn clean install" --source-root=$SOURCE_JAVA_PRJ --overwrite
+COMMAND_line=$(cat .env | grep COMMAND)
+
+for OUTPUT in $COMMAND_line
+do
+    if [[ $OUTPUT != \#* ]]; then
+        COMMAND="${OUTPUT#COMMAND=}"
+        break
+    fi
+done
+
+if [ -z "$COMMAND" ]; then
+      echo "\$COMMAND is empty"
+      exit -1
+fi
+
+COMMAND="${COMMAND//;/ }"
+
+codeql database create javacominjdb --language=java --command="$COMMAND" --source-root=$SOURCE_JAVA_PRJ --overwrite
