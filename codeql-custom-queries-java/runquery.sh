@@ -1,17 +1,13 @@
 #!/bin/bash
 
-if [ $# -eq 0 ]
-  then
-    echo "No arguments supplied"
-    exit -1
-fi
-
 resultdir="results_analysis"
+dbname="javacominjdb"
 
-while getopts d: flag
+while getopts r:d: flag
 do
     case "${flag}" in
-        d) resultdir=${OPTARG};;
+        r) resultdir=${OPTARG};;
+        d) dbname=${OPTARG};;
     esac
 done
 
@@ -26,10 +22,10 @@ DECODE_FILE="$resultdir/decode_results_$NOW.json"
 
 ARG1=${@:$OPTIND:1}
 
-echo "Save the result of '$ARG1' in '$resultdir'"
+echo "Run query '$ARG1' to db '$dbname' and save the result of in '$resultdir'"
 
 echo "Run Query..."
-codeql query run --database=javacominjdb --output=$RESULT_FILE -- $ARG1
+codeql query run --database=$dbname --output=$RESULT_FILE -- $ARG1
 
 echo "Decode Result..."
 codeql bqrs decode --output=$DECODE_FILE --format=json --entities=all -- $RESULT_FILE
